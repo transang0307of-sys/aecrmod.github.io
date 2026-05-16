@@ -1,161 +1,392 @@
+/* Toàn cục - Dark Mode */
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f4f4f4;
-    color: #333;
-  }
-  
-  header {
-    background: #111;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  header h1 {
-    margin: 0;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* 👈 Tạo khoảng cách đều giữa các mục */
-    background: #222;
-  }
-  
-  /* Mỗi mục li */
-  nav ul li {
-    position: relative;
-  }
-  
-  /* Link bên trong */
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 10px;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 500;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  
-  /* Hiệu ứng gạch dưới */
-  nav ul li a::after {
-    content: "";
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background-color: #00ffe1;
-    transition: width 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: #00ffe1;
-  }
-  
-  nav ul li a:hover::after {
-    width: 60%;
-  }
-  
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  .container {
-    width: 90%;
-    max-width: 960px;
-    margin: 30px auto;
-  }
-.post-detail {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  .post-detail h2 {
-    margin-top: 0;
-    font-size: 24px;
-  }
-  .post-detail p {
-    line-height: 1.6;
-  }
-  footer {
-    background: #111;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-  }
-  .read-more {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 24px;
-    font-size: 16px;
-    color: white;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    
-  }
-  
-  .read-more:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 86, 179, 0.3);
-  }
-  
-  .read-more:active {
-    transform: scale(0.98);
-  }
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f0f 100%);
+  background-attachment: fixed;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
 
-/* Tạo container chứa 2 nút */
+/* Background particles effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 255, 225, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(0, 188, 212, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+header {
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a2e 100%);
+  color: #fff;
+  padding: 30px 0 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 255, 225, 0.15);
+  position: relative;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00ffe1, transparent);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #00ffe1, #00bcd4, #00ffe1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Navigation */
+nav {
+  background: rgba(15, 15, 20, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 255, 225, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  color: #bbb;
+  text-decoration: none;
+  padding: 18px 10px;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffe1, #00bcd4);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 255, 225, 0.8);
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #00ffe1;
+  text-shadow: 
+    0 0 10px #00ffe1,
+    0 0 20px #00ffe1,
+    0 0 40px #00ffe1;
+}
+
+nav ul li a:hover::after {
+  width: 70%;
+}
+
+/* Main Container */
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 40px auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Post Detail Card */
+.post-detail {
+  background: linear-gradient(145deg, #1a1a1a, #151520);
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 255, 225, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 255, 225, 0.08);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+/* Glow effect */
+.post-detail::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ffe1, #00bcd4, #00ffe1);
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0.2;
+  filter: blur(15px);
+}
+
+.post-detail h2 {
+  margin-top: 0;
+  font-size: 28px;
+  color: #00ffe1;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.post-detail h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #00ffe1, #00bcd4);
+  border-radius: 2px;
+}
+
+.post-detail p {
+  line-height: 1.8;
+  color: #ccc;
+  font-size: 16px;
+}
+
+.post-detail p strong {
+  color: #00ffe1;
+}
+
+/* Button Group Container */
 .button-group {
   display: flex;
-  gap: 10px; /* Khoảng cách giữa 2 nút */
-  margin-top: 15px;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
 }
 
-/* Chỉnh lại nút để chia đôi chiều rộng */
-.button-group a {
-  flex: 1; /* Hai nút sẽ có độ dài bằng nhau */
+/* Button Styling */
+.button-group a,
+.read-more {
+  flex: 0 0 calc(50% - 7.5px);
   text-align: center;
-  margin-top: 0 !important; /* Ghi đè margin cũ */
+  margin-top: 0 !important;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0a0a0a;
+  background: linear-gradient(135deg, #00ffe1, #00bcd4);
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 15px rgba(0, 255, 225, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
 }
 
-/* Trên điện thoại cực nhỏ, nếu muốn nó tự xuống dòng để khỏi bị chật thì dùng wrap */
+/* Button shine effect */
+.button-group a::before,
+.read-more::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.button-group a:hover::before,
+.read-more:hover::before {
+  left: 100%;
+}
+
+.button-group a:hover,
+.read-more:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 25px rgba(0, 255, 225, 0.5),
+    0 0 0 2px rgba(0, 255, 225, 0.3);
+  color: #000;
+}
+
+.button-group a:active,
+.read-more:active {
+  transform: scale(0.95);
+}
+
+/* Secondary button style (if needed) */
+.button-group a:nth-child(2) {
+  background: linear-gradient(135deg, #2a2a2a, #1a1a2e);
+  color: #00ffe1;
+  border: 1px solid rgba(0, 255, 225, 0.3);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.button-group a:nth-child(2):hover {
+  background: linear-gradient(135deg, #1a1a2e, #0f0f20);
+  border-color: #00ffe1;
+  box-shadow: 
+    0 8px 25px rgba(0, 255, 225, 0.3),
+    0 0 0 2px rgba(0, 255, 225, 0.2);
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a2e 100%);
+  color: #888;
+  text-align: center;
+  padding: 25px 0;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 255, 225, 0.1);
+  position: relative;
+}
+
+footer::before {
+  content: "✦ ";
+  color: #00ffe1;
+}
+
+footer::after {
+  content: " ✦";
+  color: #00ffe1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1a1a2e, #2a2a3e);
+  border-radius: 5px;
+  border: 2px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffe1, #00bcd4);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 225, 0.3);
+  color: #fff;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8em;
+    letter-spacing: 2px;
+  }
+
+  nav ul {
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+
+  nav ul li a {
+    padding: 14px 6px;
+    font-size: 14px;
+  }
+
+  .container {
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  .post-detail {
+    padding: 20px;
+  }
+
+  .post-detail h2 {
+    font-size: 22px;
+  }
+
+  .button-group a {
+    flex: 0 0 100%;
+  }
+}
+
 @media (max-width: 320px) {
   .button-group {
     flex-direction: column;
-  }
-}
-.button-group {
-    display: flex;
-    flex-wrap: wrap;   /* cho phép xuống dòng */
     gap: 10px;
-}
-
-/* mỗi nút = 2 nút / hàng */
-.button-group a {
-    flex: 0 0 calc(50% - 5px);
-    text-align: center;
-    margin-top: 0;
-    box-sizing: border-box;
-}
-/* MOBILE: 1 nút / 1 hàng */
-@media (max-width: 768px) {
-
-  .button-group a {
-      flex: 0 0 100%;
   }
-
 }
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .post-detail {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+    }
