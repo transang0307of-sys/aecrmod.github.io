@@ -1,47 +1,279 @@
+/* Toàn cục - Dark Mode */
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background-color: #f0f2f5;
-    color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+  background-attachment: fixed;
+  color: #e0e0e0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Background pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 225, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 188, 212, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(0, 255, 225, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .container {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #ffffff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 12px;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: linear-gradient(145deg, #1a1a1a, #151520);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 255, 225, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+}
+
+/* Glow effect on container */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ffe1, #00bcd4, #00ffe1);
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0.3;
+  filter: blur(20px);
 }
 
 header {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 35px;
+  position: relative;
 }
 
 header h1 {
-    color: #2c3e50;
+  color: #00ffe1;
+  font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 
+    0 0 10px rgba(0, 255, 225, 0.5),
+    0 0 20px rgba(0, 255, 225, 0.3);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgba(0, 255, 225, 0.5), 0 0 20px rgba(0, 255, 225, 0.3);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(0, 255, 225, 0.8), 0 0 40px rgba(0, 255, 225, 0.5), 0 0 60px rgba(0, 255, 225, 0.3);
+  }
+}
+
+/* Divider line */
+header::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00ffe1, transparent);
+  margin: 20px auto 0;
+  border-radius: 2px;
 }
 
 .contact {
-    font-size: 1.1em;
-    color: #555;
+  font-size: 1.2em;
+  color: #bbb;
+  line-height: 1.8;
+}
+
+.contact strong {
+  color: #00ffe1;
+}
+
+.contact a {
+  color: #00bcd4;
+  text-decoration: none;
+  position: relative;
+}
+
+.contact a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #00ffe1;
+  transition: width 0.3s;
+}
+
+.contact a:hover {
+  color: #00ffe1;
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.5);
+}
+
+.contact a:hover::after {
+  width: 100%;
+}
+
+.pricing {
+  margin-top: 35px;
+  padding: 25px;
+  background: rgba(0, 255, 225, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 225, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative corner */
+.pricing::before {
+  content: "💎";
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 4em;
+  opacity: 0.05;
+  transform: rotate(15deg);
 }
 
 .pricing h2 {
-    color: #2980b9;
-    margin-bottom: 10px;
+  color: #00ffe1;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  position: relative;
+  display: inline-block;
+}
+
+.pricing h2::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffe1, transparent);
 }
 
 .pricing ul {
-    list-style-type: "✅ ";
-    padding-left: 20px;
-    font-size: 1.1em;
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1.1em;
+}
+
+.pricing ul li {
+  padding: 12px 0 12px 35px;
+  position: relative;
+  color: #ccc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s;
+}
+
+.pricing ul li::before {
+  content: "✅";
+  position: absolute;
+  left: 0;
+  filter: brightness(1.2);
+  transition: transform 0.3s;
+}
+
+.pricing ul li:hover {
+  color: #fff;
+  padding-left: 40px;
+  background: rgba(0, 255, 225, 0.03);
+}
+
+.pricing ul li:hover::before {
+  transform: scale(1.2);
+}
+
+.pricing ul li:last-child {
+  border-bottom: none;
 }
 
 footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #888;
-    font-size: 0.9em;
+  text-align: center;
+  margin-top: 40px;
+  color: #777;
+  font-size: 0.9em;
+  position: relative;
+  z-index: 1;
 }
+
+footer::before {
+  content: "✦ ";
+  color: #00ffe1;
+}
+
+footer::after {
+  content: " ✦";
+  color: #00ffe1;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ffe1, #00bcd4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ffe1;
+  box-shadow: 0 0 10px rgba(0, 255, 225, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 225, 0.3);
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  header h1 {
+    font-size: 2em;
+  }
+
+  .pricing {
+    padding: 20px;
+  }
+
+  .pricing ul li {
+    font-size: 1em;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+    }
